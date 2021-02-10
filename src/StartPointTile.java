@@ -14,4 +14,14 @@ public class StartPointTile extends JFrame {
         g.setColor(Color.YELLOW);
         g.fillRect(0, 350, 50, 50);
     }
+
+    public int getRow(){
+        return row;
+    }
+
+    public int getCol(){
+        return col;
+    }
+
+
 }

@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class GPSMap extends JFrame {
+public class GPSMap extends JFrame implements MouseListener {
     private Object[][] gameTiles;
 
     public GPSMap() {
@@ -83,10 +85,19 @@ public class GPSMap extends JFrame {
         this.gameTiles[6][4] = (new ImpassableTerritory(6, 4));
 
 
+        JPanel panel = new JPanel();
+        panel.setLocation(150, 550);
+        JButton restartButton = new JButton("Restart");
+        restartButton.setBounds(50,500,100,50);
+        panel.add(restartButton);
+        this.getContentPane().add(panel);
+
         this.setSize(600, 600);
         this.setVisible(true);
         this.setTitle("The great search for Baba Yaga");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.addMouseListener(this);
+
 
 
     }
@@ -119,5 +130,59 @@ public class GPSMap extends JFrame {
 
             }
         }
+    }
+
+    private int tileCoordinates(int tileCoord) {
+        return tileCoord / Tiles.tileSize;
+    }
+
+    private Object[][] currentTile;
+    private Object newTile;
+
+    private Object getTile(int row, int col){
+        return this.gameTiles[row][col]=currentTile;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println(this.tileCoordinates(e.getX()));
+        System.out.println(this.tileCoordinates(e.getY()));
+
+        int row = this.tileCoordinates(e.getY());
+        int col = this.tileCoordinates(e.getX());
+
+
+        if(this.currentTile!=null){
+            int newRow = this.tileCoordinates(e.getY());
+            int newCol = this.tileCoordinates(e.getX());
+
+            currentTile[newRow][newCol]=(new StartPointTile(newRow,newCol));
+            this.repaint();
+            return;
+        }
+    }
+
+
+
+
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

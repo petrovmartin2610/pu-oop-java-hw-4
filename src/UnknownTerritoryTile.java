@@ -10,6 +10,14 @@ public class UnknownTerritoryTile extends JFrame {
         this.col=col;
     }
 
+    public int getRow(){
+        return row;
+    }
+
+    public int getCol(){
+        return col;
+    }
+
     public void draw(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(0, 0, 50, 50);
