@@ -1,23 +1,22 @@
+package tiles;
+
 import java.awt.*;
 import javax.swing.*;
 
+/**@author Martin Petrov
+ * клас дефиниращ полетата с незнаен характер
+ */
 public class UnknownTerritoryTile extends JFrame {
     private int row;
     private int col;
 
+    //конструктор
     public UnknownTerritoryTile(int row, int col){
         this.row=row;
         this.col=col;
     }
 
-    public int getRow(){
-        return row;
-    }
-
-    public int getCol(){
-        return col;
-    }
-
+    //методи, изобразяващи полетата с незнаен характер
     public void draw(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(0, 0, 50, 50);
@@ -77,5 +76,14 @@ public class UnknownTerritoryTile extends JFrame {
     public void draw3(Graphics g){
         g.fillRect(250, 350, 50, 50);
         g.fillRect(350, 350, 50, 50);
+    }
+
+    //getters & setters
+    public int getRow(){
+        return row;
+    }
+
+    public int getCol(){
+        return col;
     }
 }

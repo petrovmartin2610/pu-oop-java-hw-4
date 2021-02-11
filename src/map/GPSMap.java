@@ -1,13 +1,23 @@
+package map;
+
+import tiles.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+
+
+/** @author Martin Petrov
+ * Клас GPSMap задаващ координатите на игровите поленца (чрез хардкод) и рендериращ бутон за рестарт
+ */
 public class GPSMap extends JFrame implements MouseListener {
     private Object[][] gameTiles;
 
     public GPSMap() {
 
+        //обект съхраняващ всички игрови поленца
         this.gameTiles = new Object[8][8];
 
         //render of unknown territory tiles
@@ -85,6 +95,7 @@ public class GPSMap extends JFrame implements MouseListener {
         this.gameTiles[6][4] = (new ImpassableTerritory(6, 4));
 
 
+        //restart button parameters
         JPanel panel = new JPanel();
         panel.setLocation(150, 550);
         JButton restartButton = new JButton("Restart");
@@ -92,6 +103,7 @@ public class GPSMap extends JFrame implements MouseListener {
         panel.add(restartButton);
         this.getContentPane().add(panel);
 
+        //game window parameters
         this.setSize(600, 600);
         this.setVisible(true);
         this.setTitle("The great search for Baba Yaga");
@@ -102,6 +114,9 @@ public class GPSMap extends JFrame implements MouseListener {
 
     }
 
+    /**@author Martin Petrov
+     * Метода paint, изобразяващ игралната дъска като създава инстанции на отделните обекти (поленца)
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -132,17 +147,33 @@ public class GPSMap extends JFrame implements MouseListener {
         }
     }
 
+
+    /**@author Martin Petrov
+     *Метод връщащ координатите на отделните игрови поленца, като за целта използва размера им
+     */
     private int tileCoordinates(int tileCoord) {
         return tileCoord / Tiles.tileSize;
     }
 
+    /**@author Martin Petrov
+     *Обекти съдържащи съответно сегашното поле, на което се намира играча и полето, към което ще се
+     * придвижва на следващия ход
+     */
     private Object[][] currentTile;
     private Object newTile;
 
+
+    /**@author Martin Petrov
+     *Обект, който при получаване на стойности за row & col определя в кое поленце се намира играча в момента
+     */
     private Object getTile(int row, int col){
         return this.gameTiles[row][col]=currentTile;
     }
 
+    /**@author Martin Petrov
+     *Метод, който при mouse click задава местенето на играча чрез repaint на игровите полета от един тип поле
+     * към друг
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println(this.tileCoordinates(e.getX()));
@@ -166,6 +197,7 @@ public class GPSMap extends JFrame implements MouseListener {
 
 
 
+    //неизползвани имплементирани методи от MouseListener
     @Override
     public void mousePressed(MouseEvent e) {
 

@@ -1,20 +1,29 @@
+package tiles;
+
 import javax.swing.*;
 import java.awt.*;
 
+
+/**@author Martin Petrov
+ * клас дефиниращ самите поленца (очертанията им) и тяхната позиция
+ */
 public class Tiles extends JFrame{
     private int row;
     private int col;
     public static int tileSize;
 
+    //конструктор
     public Tiles(int row, int col) {
         this.row = row;
         this.col = col;
         this.tileSize = 50;
     }
 
+    //определяне координатите на полетата
     int xTile = this.col*this.tileSize;
     int yTile = this.row*this.tileSize;
 
+    //методи, изборазяващи полетата
     public void draw(Graphics g){
         g.setColor(Color.BLACK);
         g.drawRect(0,0,50,50);
